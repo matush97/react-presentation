@@ -1,10 +1,37 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import UserItem from './UserItem';
 import Card from "../../shared/components/UIElements/Card";
 import './UserList.css';
 
+import inkognito from "../../photos/inkognito.png"
+
 function UsersList (props) {
+    const [items, setItems] = useState(props.items);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [formData, setFormData] = useState({
+        id: '',
+        name: '',
+        image: inkognito
+    });
+
+    const handleAddItem  = () => {
+        setItems([...items, { ...formData }]);
+        setFormData({ id: '', name: '' });
+        setIsModalOpen(false);
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        console.log("name", name)
+        console.log("value", value)
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    // returns
     if (props.items.length === 0) {
         return (
             <div className="center">
@@ -16,17 +43,64 @@ function UsersList (props) {
     }
 
     return (
-        <ul className="users-list">
-            {props.items.map(user => (
-                <UserItem
-                    key={user.id}
-                    id={user.id}
-                    image={user.image}
-                    name={user.name}
-                    placeCount={user.places}
-                />
-            ))}
-        </ul>
+        <div>
+            <ul className="users-list">
+                {items.map(user => (
+                    <UserItem
+                        key={user.id}
+                        id={user.id}
+                        image={user.image}
+                        name={user.name}
+                    />
+                ))}
+            </ul>
+
+            <button
+                onClick={() => setIsModalOpen(true)}
+            >
+                Pridať položku
+            </button>
+
+            {isModalOpen && (
+                <div
+                    // onClick={() => setIsModalOpen(false)}
+                >
+                    <h3>New user</h3>
+                    <input
+                        type="id"
+                        name="id"
+                        value={formData.id}
+                        onChange={handleChange}
+                        placeholder="Id"
+                    />
+                    <input
+                        type="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="Name"
+                    />
+                    {/*<input*/}
+                    {/*    type="places"*/}
+                    {/*    value={newItem}*/}
+                    {/*    onChange={(e) => setNewItem(e.target.value)}*/}
+                    {/*    placeholder="Zadaj názov"*/}
+                    {/*/>*/}
+                    <div className="flex justify-end space-x-2">
+                        <button
+                            onClick={() => setIsModalOpen(false)}
+                        >
+                            Zrušiť
+                        </button>
+                        <button
+                            onClick={handleAddItem }
+                        >
+                            Pridať
+                        </button>
+                    </div>
+                </div>
+            )}
+        </div>
     );
 }
 
