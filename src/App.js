@@ -8,6 +8,7 @@ import {
 
 import './App.css';
 import Users from "./user/pages/Users";
+import User from "./user/pages/User";
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
           <Switch>
             <Route path="/" exact>
               <Users />
+            </Route>
+            <Route path="/user/:userId" exact>
+              <User />
             </Route>
             <Redirect to="/" />
           </Switch>

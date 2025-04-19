@@ -58,12 +58,11 @@ function UsersList (props) {
             <button
                 onClick={() => setIsModalOpen(true)}
             >
-                Pridať položku
+                Add User
             </button>
 
             {isModalOpen && (
                 <div
-                    // onClick={() => setIsModalOpen(false)}
                 >
                     <h3>New user</h3>
                     <input
@@ -80,22 +79,16 @@ function UsersList (props) {
                         onChange={handleChange}
                         placeholder="Name"
                     />
-                    {/*<input*/}
-                    {/*    type="places"*/}
-                    {/*    value={newItem}*/}
-                    {/*    onChange={(e) => setNewItem(e.target.value)}*/}
-                    {/*    placeholder="Zadaj názov"*/}
-                    {/*/>*/}
                     <div className="flex justify-end space-x-2">
                         <button
                             onClick={() => setIsModalOpen(false)}
                         >
-                            Zrušiť
+                            Cancel
                         </button>
                         <button
                             onClick={handleAddItem }
                         >
-                            Pridať
+                            Add
                         </button>
                     </div>
                 </div>

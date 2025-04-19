@@ -19,7 +19,7 @@ function Users() {
             image: djsova,
         },
         {
-            id: 'u2',
+            id: 'u3',
             name: 'krusty',
             image: krusty,
         }
