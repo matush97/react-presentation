@@ -5,6 +5,7 @@ import Card from "../../shared/components/UIElements/Card";
 import './UserList.css';
 
 import inkognito from "../../photos/inkognito.png"
+import AddPersonModal from "./AddPersonModal";
 
 function UsersList (props) {
     const [items, setItems] = useState(props.items);
@@ -61,38 +62,13 @@ function UsersList (props) {
                 Add User
             </button>
 
-            {isModalOpen && (
-                <div
-                >
-                    <h3>New user</h3>
-                    <input
-                        type="id"
-                        name="id"
-                        value={formData.id}
-                        onChange={handleChange}
-                        placeholder="Id"
-                    />
-                    <input
-                        type="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Name"
-                    />
-                    <div className="flex justify-end space-x-2">
-                        <button
-                            onClick={() => setIsModalOpen(false)}
-                        >
-                            Cancel
-                        </button>
-                        <button
-                            onClick={handleAddItem }
-                        >
-                            Add
-                        </button>
-                    </div>
-                </div>
-            )}
+            <AddPersonModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                formData={formData}
+                onChange={handleChange}
+                onSubmit={handleAddItem}
+            />
         </div>
     );
 }
