@@ -4,7 +4,7 @@ import UserItem from './UserItem';
 import Card from "../../shared/components/UIElements/Card";
 import './UserList.css';
 
-const UsersList = props => {
+function UsersList (props) {
     if (props.items.length === 0) {
         return (
             <div className="center">
@@ -28,6 +28,6 @@ const UsersList = props => {
             ))}
         </ul>
     );
-};
+}
 
 export default UsersList;
