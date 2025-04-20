@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import UserItem from './UserItem';
-import Card from "../../shared/components/UIElements/Card";
+import Card from "../../utils/components/UIElements/Card";
 import './UserList.css';
 
 import inkognito from "../../photos/inkognito.png"
